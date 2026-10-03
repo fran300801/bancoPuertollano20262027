@@ -55,7 +55,6 @@ def leerFichero(numCliente):
                         cliente.deposito.retirar(cantidad)
                     else:
                         log.escribir("Warning", f"Movimiento no se realizara")
-
                 except (ValueError, IndexError):
                     log.escribir("ERROR",f"MOVIMIENTO NO VÁLIDO IGNORADO (cliente {numCliente}, "f"línea {numLinea}): '{linea.strip()}'")
 
