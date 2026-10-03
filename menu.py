@@ -34,7 +34,7 @@ def menu():
             for archivo in archivos:
                 if archivo.endswith(".txt"):
                  numero = archivo.replace(".txt", "")
-                print(f"-{numero}")
+                 print(f"-{numero}")
         elif opt == "4":
             log.escribir(
                 "INFO",
