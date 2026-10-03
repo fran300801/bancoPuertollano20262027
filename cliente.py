@@ -56,6 +56,10 @@ def leerFichero(numCliente):
         log.escribir("INFO", f"CLIENTE CARGADO CORRECTAMENTE: {numCliente}")
         print("Datos del cliente cargados correctamente")
 
+        print(f"Cliente: {cliente.getNumero()}")
+        print(f"Saldo cuenta: {cliente.getCuenta().getSaldo()} €")
+        print(f"Saldo depósito: {cliente.getDeposito().getSaldo()} €")
+
         return cliente
 
     except FileNotFoundError:
