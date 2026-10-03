@@ -23,7 +23,7 @@ def menu():
                 print(f"Cliente: {cliente.numero}")
                 print(f"Saldo cuenta: {cliente.cuenta.saldo} €")
                 print(f"Saldo depósito: {cliente.deposito.saldo} €")
-
+                print(f"Saldo Total: {cliente.getSaldoTotal()} €")
         elif opt == "3":
             log.escribir(
                 "INFO",

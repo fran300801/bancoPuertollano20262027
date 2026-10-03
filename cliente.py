@@ -71,7 +71,7 @@ def leerFichero(numCliente):
         print(f"Cliente: {cliente.getNumero()}")
         print(f"Saldo cuenta: {cliente.getCuenta().getSaldo()} €")
         print(f"Saldo depósito: {cliente.getDeposito().getSaldo()} €")
-
+        print(f"Saldo total: {cliente.getSaldoTotal()} €")
         return cliente
 
     except FileNotFoundError:
@@ -79,6 +79,8 @@ def leerFichero(numCliente):
         print("El usuario no tiene ninguna cuenta con el banco")
         return None
 
+def getSaldoTotal(self):
+    return self.cuenta.getSaldo() + self.deposito.getSaldo()
 
 def cargarClienteGuardado(numCliente):
 
