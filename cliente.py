@@ -26,27 +26,36 @@ def leerFichero(numCliente):
     try:
         with open(f"ficherosClientes/{numCliente}.txt", "r") as f:
 
+            numLinea = 0
             linea = f.readline()
 
             while linea:
+                numLinea += 1
 
-                datos = linea.strip().split(";")
+                if linea.strip() == "":
+                    linea = f.readline()
+                    continue
+                try:
+                    datos = linea.strip().split(";")
 
-                cantidad = float(datos[0])
-                operacion = datos[1]
-                destino = datos[2]
+                    cantidad = float(datos[0])
+                    operacion = datos[1]
+                    destino = datos[2]
 
-                if destino == "Cuenta" and operacion == "Ingreso":
-                    cliente.cuenta.ingresar(cantidad)
+                    if destino == "Cuenta" and operacion == "Ingreso":
+                        cliente.cuenta.ingresar(cantidad)
 
-                elif destino == "Cuenta" and operacion == "Retirada":
-                    cliente.cuenta.retirar(cantidad)
+                    elif destino == "Cuenta" and operacion == "Retirada":
+                        cliente.cuenta.retirar(cantidad)
 
-                elif destino == "Deposito" and operacion == "Ingreso":
-                    cliente.deposito.ingresar(cantidad)
+                    elif destino == "Deposito" and operacion == "Ingreso":
+                        cliente.deposito.ingresar(cantidad)
 
-                elif destino == "Deposito" and operacion == "Retirada":
-                    cliente.deposito.retirar(cantidad)
+                    elif destino == "Deposito" and operacion == "Retirada":
+                        cliente.deposito.retirar(cantidad)
+
+                except (ValueError, IndexError):
+                    log.escribir("ERROR",f"MOVIMIENTO NO VÁLIDO IGNORADO (cliente {numCliente}, "f"línea {numLinea}): '{linea.strip()}'")
 
                 linea = f.readline()
 
