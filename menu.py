@@ -25,6 +25,17 @@ def menu():
                 print(f"Saldo depósito: {cliente.deposito.saldo} €")
                 print(f"Saldo Total: {cliente.getSaldoTotal()} €")
         elif opt == "3":
+
+            log.escribir("INFO", "lISTADO DE CLIENTES")
+
+            archivos = os.listdir("datosClientes")
+
+            print("")
+            for archivo in archivos:
+                if archivo.endswith(".txt"):
+                 numero = archivo.replace(".txt", "")
+                print(f"-{numero}")
+        elif opt == "4":
             log.escribir(
                 "INFO",
                 "FIN EJECUCIÓN"
