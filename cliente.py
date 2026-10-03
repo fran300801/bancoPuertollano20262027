@@ -22,6 +22,7 @@ def leerFichero(numCliente):
     log.escribir("INFO", f"INICIO CARGA DE CLIENTE: {numCliente}")
 
     cliente = Cliente(numCliente)
+    contador = 0
 
     try:
         with open(f"ficherosClientes/{numCliente}.txt", "r") as f:
@@ -44,15 +45,16 @@ def leerFichero(numCliente):
 
                     if destino == "Cuenta" and operacion == "Ingreso":
                         cliente.cuenta.ingresar(cantidad)
-
+                        contador +=1
                     elif destino == "Cuenta" and operacion == "Retirada":
                         cliente.cuenta.retirar(cantidad)
-
+                        contador +=1
                     elif destino == "Deposito" and operacion == "Ingreso":
                         cliente.deposito.ingresar(cantidad)
-
+                        contador +=1
                     elif destino == "Deposito" and operacion == "Retirada":
                         cliente.deposito.retirar(cantidad)
+                        contador +=1
                     else:
                         log.escribir("Warning", f"Movimiento no se realizara")
                 except (ValueError, IndexError):
