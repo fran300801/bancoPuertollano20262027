@@ -1,3 +1,5 @@
+import os
+
 from cliente import cargarCliente
 from logs import Log
 
@@ -9,7 +11,8 @@ def menu():
 
         print("1) Cargar Datos Cliente")
         print("2) Consultar cuenta Deposito")
-        print("3) Salir")
+        print ("3) Listar clientes cargados")
+        print("4) Salir")
 
         opt = input("Introduce la opción deseada: ")
 

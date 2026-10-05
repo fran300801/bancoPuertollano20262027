@@ -1,3 +1,5 @@
+import os
+
 from models import Cliente
 from logs import Log
 
