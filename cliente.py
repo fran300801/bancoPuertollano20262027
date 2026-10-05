@@ -1,9 +1,19 @@
 import os
 
-from models import Cliente
+from models import Cliente, Deposito, CuentaBancaria
 from logs import Log
 
 log = Log()
+
+
+def __init__(self, numCliente):
+    self.numCliente = numCliente
+    self.cuenta = CuentaBancaria()
+    self.deposito = Deposito()
+
+
+    def getSaldoTotal(self):
+        return self.cuenta.saldo + self.deposito.saldo
 
 def cargarCliente(tipo):
     while True:
@@ -67,7 +77,12 @@ def leerFichero(numCliente):
         # Guardamos el estado final del cliente
         cliente.guardar()
 
+
         log.escribir("INFO", f"CLIENTE CARGADO CORRECTAMENTE: {numCliente}")
+        mensaje= f"Movimientos procesados: {contador}"
+        print(mensaje)
+        log.escribir("INFO",mensaje)
+
         print("Datos del cliente cargados correctamente")
 
         print(f"Cliente: {cliente.getNumero()}")
@@ -81,17 +96,9 @@ def leerFichero(numCliente):
         print("El usuario no tiene ninguna cuenta con el banco")
         return None
 
-def getSaldoTotal(self):
-    return self.cuenta.getSaldo() + self.deposito.getSaldo()
 
-def guardar(self):
-    if not os.path.exists("datosClientes"):
-        os.mkdir("datosClientes")
 
-    with open(f"datosClientes/{self.numero}.txt", "w") as f:
-        f.write(f"{self.numero}\n")
-        f.write(f"{self.cuenta.getSaldo()}\n")
-        f.write(f"{self.deposito.getSaldo()}\n")
+
 
 def cargarClienteGuardado(numCliente):
 
@@ -99,13 +106,15 @@ def cargarClienteGuardado(numCliente):
         with open(f"datosClientes/{numCliente}.txt", "r") as f:
 
             numero = f.readline().strip()
-            saldoCuenta = float(f.readline().strip())
-            saldoDeposito = float(f.readline().strip())
+            datos = numero.split(";")
 
-            cliente = Cliente(numero)
+            cliente = Cliente(datos[0])
 
-            cliente.cuenta.saldo = saldoCuenta
-            cliente.deposito.saldo = saldoDeposito
+            cliente.cuenta.saldo = float(datos[1])
+            cliente.deposito.saldo = float(datos[2])
+            print(f"Saldo cuenta: {cliente.cuenta.saldo} €")
+            print(f"Saldo depósito: {cliente.deposito.saldo} €")
+            print(f"Saldo total: {cliente.getSaldoTotal()} €")
 
             return cliente
 
